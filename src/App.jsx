@@ -1,3 +1,26 @@
+import React from "react";
+import { TodosProvider } from "./context/todosContext";
+import AddTodoForm from "./components/addTodoForm";
+import FilterBar from "./components/filterBar";
+import TodoList from "./components/todoList";
+import styles from "./App.module.css";
+import "./App.css";
+
+export default function App() {
+  return (
+    <TodosProvider>
+      <div className={styles.page}>
+        <div className={styles.card}>
+          <h1 className={styles.title}>My ToDo List</h1>
+          <AddTodoForm />
+          <FilterBar />
+          <TodoList />
+        </div>
+      </div>
+    </TodosProvider>
+  );
+}
+
 
 // Задание 1
 // 	Создание Todo приложения с использованием React Context API

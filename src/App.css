@@ -1,0 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background: linear-gradient(180deg, #b8b3df 0%, #a7a4cf 40%, #b9b4d8 100%);
+  min-height: 100vh;
+}
