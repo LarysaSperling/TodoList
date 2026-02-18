@@ -1,0 +1,36 @@
+.wrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.label {
+  opacity: 0.85;
+}
+
+.btn {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: transparent;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.active {
+  font-weight: 700;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+@media (max-width: 480px) {
+  .wrap {
+    gap: 6px;
+  }
+
+  .btn {
+    padding: 6px 8px; 
+  }
+}

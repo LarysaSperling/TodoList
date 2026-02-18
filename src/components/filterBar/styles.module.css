@@ -1,13 +1,21 @@
 .wrap {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 4px 0 16px;
+  width: 100%;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: 8px;
+
+  margin: 12px 0;
 }
 
 .btn {
-  padding: 6px 10px;
-  border-radius: 6px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  padding: 8px 12px;
+  border-radius: 12px;
   border: 2px solid rgba(255, 255, 255, 0.7);
   background: rgba(255, 255, 255, 0.18);
   color: #fff;
@@ -17,4 +25,10 @@
 
 .active {
   background: rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 480px) {
+  .btn {
+    flex: 1 1 calc(50% - 8px);
+  }
 }

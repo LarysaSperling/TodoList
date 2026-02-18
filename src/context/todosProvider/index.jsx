@@ -1,15 +1,14 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
+import { TodosContext } from "../todosContext";
 
-const TodosContext = createContext(null);
 const STORAGE_KEY = "todos_app_v1";
 
-export function TodosProvider({ children }) {
+export default function TodosProvider({ children }) {
   const [todos, setTodos] = useState([]);
-  const [filter, setFilter] = useState("all"); // all | active | done
+  const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
 
   useEffect(() => {
     let cancelled = false;
@@ -38,8 +37,8 @@ export function TodosProvider({ children }) {
         }));
 
         if (!cancelled) setTodos(seed);
-      } catch (e) {
-        if (!cancelled) setError("Не удалось загрузить задачи (axios).");
+      } catch {
+        if (!cancelled) setError("loadError");
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -52,7 +51,9 @@ export function TodosProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    if (!loading) localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+    if (!loading) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+    }
   }, [todos, loading]);
 
   function addTodo(title) {
@@ -75,7 +76,9 @@ export function TodosProvider({ children }) {
   }
 
   function toggleTodo(id) {
-    setTodos((prev) => prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)));
+    setTodos((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t))
+    );
   }
 
   const filteredTodos = useMemo(() => {
@@ -102,8 +105,4 @@ export function TodosProvider({ children }) {
   return <TodosContext.Provider value={value}>{children}</TodosContext.Provider>;
 }
 
-export function useTodos() {
-  const ctx = useContext(TodosContext);
-  if (!ctx) throw new Error("useTodos должен быть внутри <TodosProvider>");
-  return ctx;
-}
+

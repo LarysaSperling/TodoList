@@ -1,28 +1,30 @@
 import React from "react";
-import { useTodos } from "../../context/todosContext";
+import { useTodos } from "../../context/useTodos";
+import { useI18n } from "../../i18n/useI18n";
+
 import styles from "./styles.module.css";
 
-const filters = [
-  { key: "all", label: "Все" },
-  { key: "active", label: "Активные" },
-  { key: "done", label: "Выполненные" },
-];
+const filters = ["all", "active", "done"];
 
 export default function FilterBar() {
   const { filter, setFilter } = useTodos();
+  const { t } = useI18n();
 
   return (
     <div className={styles.wrap}>
-      {filters.map((f) => (
+      {filters.map((key) => (
         <button
-          key={f.key}
+          key={key}
           type="button"
-          onClick={() => setFilter(f.key)}
-          className={`${styles.btn} ${filter === f.key ? styles.active : ""}`}
+          onClick={() => setFilter(key)}
+          className={`${styles.btn} ${
+            filter === key ? styles.active : ""
+          }`}
         >
-          {f.label}
+          {t(key)}
         </button>
       ))}
     </div>
   );
 }
+

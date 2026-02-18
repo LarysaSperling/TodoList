@@ -1,17 +1,22 @@
-import React from "react";
-import { TodosProvider } from "./context/todosContext";
+import TodosProvider from "./context/todosProvider";
 import AddTodoForm from "./components/addTodoForm";
 import FilterBar from "./components/filterBar";
 import TodoList from "./components/todoList";
+import LanguageSwitcher from "./components/languageSwitcher";
+import { useI18n } from "./i18n/useI18n";
+
 import styles from "./App.module.css";
 import "./App.css";
 
 export default function App() {
+  const { t } = useI18n();
+
   return (
     <TodosProvider>
       <div className={styles.page}>
         <div className={styles.card}>
-          <h1 className={styles.title}>My ToDo List</h1>
+          <LanguageSwitcher />
+          <h1 className={styles.title}>{t("title")}</h1>
           <AddTodoForm />
           <FilterBar />
           <TodoList />
