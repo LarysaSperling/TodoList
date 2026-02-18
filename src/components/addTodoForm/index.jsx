@@ -15,11 +15,14 @@ export default function AddTodoForm() {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <input
-        className={styles.input}
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Новая задача..."
-      />
+  className={styles.input}
+  type="text"
+  id="todo-title"
+  name="title"
+  value={title}
+  onChange={(e) => setTitle(e.target.value)}
+  placeholder="Новая задача..."
+/>
       <button className={styles.button} type="submit">
         Добавить
       </button>
