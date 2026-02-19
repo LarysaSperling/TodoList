@@ -2,26 +2,40 @@
   width: 100%;
   box-sizing: border-box;
 
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  display: flex;
   gap: 8px;
-
-  margin: 12px 0;
+  justify-content: center;
+  flex-wrap: wrap; 
 }
 
 .btn {
-  width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
+  flex: 1 1 120px; 
+  min-height: 42px;
 
-  padding: 8px 12px;
+  padding: 8px 14px;
   border-radius: 12px;
   border: 2px solid rgba(255, 255, 255, 0.7);
   background: rgba(255, 255, 255, 0.18);
   color: #fff;
-  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+
+  white-space: nowrap;
+  box-sizing: border-box;
 }
+
+.active {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+
+
 
 .active {
   background: rgba(0, 0, 0, 0.2);
@@ -29,6 +43,9 @@
 
 @media (max-width: 480px) {
   .btn {
-    flex: 1 1 calc(50% - 8px);
+     flex: 1 1 calc(50% - 8px);
+    font-size: 12px;
+    white-space: normal;
   }
 }
+
